@@ -2,8 +2,43 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const services = [
+    // --- TOP SPECIAL SERVICES ---
     {
       id: 1,
+      title: "Water Tank Cleaning",
+      category: "Special Service",
+      badge: "TOP SERVICE",
+      price: "From KES 2,000",
+      description: (
+        <span className="block space-y-1 mt-2">
+          <span className="block font-semibold text-white">Pricing Breakdown:</span>
+          <span className="block">• Small (500L - 1,000L): KES 2,000 - 2,500</span>
+          <span className="block">• Medium (2,000L - 5,000L): KES 3,500 - 5,000</span>
+          <span className="block">• Large (10,000L / Underground): KES 7,000 - 10,000</span>
+          <span className="block text-yellow-400 text-sm mt-2">* Transport fee applies if far.</span>
+        </span>
+      ),
+      imageUrl: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      id: 2,
+      title: "Plumbing Services",
+      category: "Special Service",
+      badge: "TOP SERVICE",
+      price: "From KES 1,500",
+      description: (
+        <span className="block space-y-1 mt-2">
+          <span className="block">Fixing leaks, unblocking drains, installing new pipes, and general plumbing repairs.</span>
+          <span className="block mt-2 font-semibold text-white">Call-out Fee: KES 1,500</span>
+          <span className="block text-sm text-gray-300">(Parts and materials charged separately based on the job).</span>
+        </span>
+      ),
+      imageUrl: "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=1000&auto=format&fit=crop"
+    },
+    
+    // --- REGULAR SERVICES ---
+    {
+      id: 3,
       title: "Usafi wa Kawaida (Standard Clean)",
       category: "Weekly Maintenance",
       price: "KES 1,500",
@@ -11,7 +46,7 @@ function App() {
       imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 2,
+      id: 4,
       title: "Usafi wa Kina (Deep Clean)",
       category: "Premium Service",
       price: "KES 3,500",
@@ -19,31 +54,47 @@ function App() {
       imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 3,
+      id: 5,
       title: "Move-Out / Move-In Clean",
       category: "Heavy Duty",
       price: "KES 5,500",
       description: "Complete top-to-bottom wash for vacant houses. Guaranteed to get your deposit back.",
-      imageUrl: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=1000&auto=format&fit=crop" // Clean, empty room
+      imageUrl: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 4,
+      id: 6,
+      title: "Post-Construction Cleaning",
+      category: "Heavy Duty",
+      price: "KES 8,000",
+      description: "Remove debris, dust, and paint splatters after a renovation or new build. We make your new space livable.",
+      imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      id: 7,
+      title: "Vacuum Cleaning",
+      category: "Specialized",
+      price: "KES 2,000",
+      description: "Deep vacuuming for carpets, rugs, and large spaces. Removes embedded dirt and allergens effectively.",
+      imageUrl: "https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      id: 8,
       title: "Kuosha Nguo Pekee",
       category: "Laundry",
       price: "KES 1,000",
       description: "We wash, dry, and fold your clothes. Perfect for busy professionals or large families.",
-      imageUrl: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?q=80&w=1000&auto=format&fit=crop" // Soapy foam and clothes
+      imageUrl: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 5,
+      id: 9,
       title: "Kufua Mkeka (Mat Washing)",
       category: "Specialized",
       price: "KES 800",
       description: "Deep washing and drying of floor mats (mikeka). We remove stubborn stains and odors.",
-      imageUrl: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1000&auto=format&fit=crop" // Washing a mat
+      imageUrl: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 6,
+      id: 10,
       title: "Sofa Set Cleaning",
       category: "Upholstery",
       price: "KES 3,000",
@@ -51,7 +102,7 @@ function App() {
       imageUrl: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 7,
+      id: 11,
       title: "Viti (Dining Chairs) Cleaning",
       category: "Upholstery",
       price: "KES 1,500",
@@ -59,7 +110,7 @@ function App() {
       imageUrl: "https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?q=80&w=1000&auto=format&fit=crop"
     },
     {
-      id: 8,
+      id: 12,
       title: "Usafi wa Ofisi (Office Clean)",
       category: "Commercial",
       price: "KES 4,000",
@@ -69,6 +120,14 @@ function App() {
   ];
 
   const [activeService, setActiveService] = useState(services[0]);
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bookingData, setBookingData] = useState({
+    name: '',
+    phone: '',
+    date: '',
+    time: ''
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,15 +136,21 @@ function App() {
         const nextIndex = (currentIndex + 1) % services.length;
         return services[nextIndex];
       });
-    }, 5000);
+    }, 6000); // Increased to 6 seconds since the description for water tank is longer
     return () => clearInterval(interval);
   }, [services.length]); 
 
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    alert(`Booking Confirmed!\n\nService: ${activeService.title}\nName: ${bookingData.name}\nPhone: ${bookingData.phone}\nDate: ${bookingData.date}\nTime: ${bookingData.time}`);
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-[#0f1115] text-gray-200 font-sans">
+    <div className="min-h-screen bg-[#0f1115] text-gray-200 font-sans relative">
       
       {/* Navigation Bar */}
-      <nav className="bg-[#15171e] border-b border-gray-800 sticky top-0 z-50">
+      <nav className="bg-[#15171e] border-b border-gray-800 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-8">
@@ -98,7 +163,10 @@ function App() {
               </div>
             </div>
             <div>
-              <button className="bg-blue-600 text-white px-5 py-2 rounded-md text-sm font-bold hover:bg-blue-500 transition shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-blue-600 text-white px-5 py-2 rounded-md text-sm font-bold hover:bg-blue-500 transition shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+              >
                 Book Now
               </button>
             </div>
@@ -109,9 +177,7 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* SPOTLIGHT HERO SECTION */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6 min-h-[400px] flex items-end">
-          
-          {/* Background Image with crossfade effect */}
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6 min-h-[450px] flex items-end">
           {services.map(service => (
             <div 
               key={service.id}
@@ -121,26 +187,31 @@ function App() {
               style={{ backgroundImage: `url(${service.imageUrl})` }}
             />
           ))}
-
-          {/* Dark Overlay so text is readable */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-[#0f1115]/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-[#0f1115]/80 to-transparent"></div>
           
           <div className="relative z-10 p-8 md:p-16 w-full">
             <div className="flex items-center gap-3 mb-2">
-              <span className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">SPOTLIGHT</span>
-              <span className="text-sm font-semibold text-gray-300">{activeService.category}</span>
+              <span className={`text-white text-xs font-bold px-2 py-1 rounded shadow-lg ${
+                activeService.badge ? 'bg-orange-500 shadow-orange-500/50' : 'bg-blue-600'
+              }`}>
+                {activeService.badge || "SPOTLIGHT"}
+              </span>
+              <span className="text-sm font-semibold text-blue-300 bg-blue-900/50 px-2 py-1 rounded">{activeService.category}</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 transition-all duration-500">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 transition-all duration-500 drop-shadow-lg">
               {activeService.title}
             </h1>
             
-            <p className="text-gray-300 max-w-2xl text-lg mb-6 drop-shadow-md">
+            <div className="text-gray-200 max-w-2xl text-lg mb-6 drop-shadow-md leading-relaxed font-medium">
               {activeService.description}
-            </p>
+            </div>
             
-            <div className="flex items-center gap-4">
-              <button className="bg-blue-600 text-white px-8 py-3 rounded-md font-bold hover:bg-blue-500 transition shadow-lg">
+            <div className="flex items-center gap-4 mt-8">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-blue-600 text-white px-8 py-3 rounded-md font-bold hover:bg-blue-500 transition shadow-lg"
+              >
                 Book for {activeService.price}
               </button>
               <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-md font-medium hover:bg-white/20 transition flex items-center gap-2">
@@ -160,12 +231,8 @@ function App() {
                 activeService.id === service.id ? 'border-blue-500 scale-105 shadow-[0_0_15px_rgba(37,99,235,0.4)]' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <img 
-                src={service.imageUrl} 
-                alt={service.title} 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-2 text-left">
+              <img src={service.imageUrl} alt={service.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-2 text-left">
                 <span className="text-white text-xs font-bold leading-tight">{service.title}</span>
               </div>
             </button>
@@ -178,19 +245,22 @@ function App() {
             <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clipRule="evenodd" />
             </svg>
-            <h2 className="text-2xl font-bold text-white">Top Rated Services</h2>
+            <h2 className="text-2xl font-bold text-white">All Services</h2>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div key={index} className="group cursor-pointer">
+              <div key={index} className="group cursor-pointer" onClick={() => { setActiveService(service); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                 <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-3 border border-gray-800 group-hover:border-blue-500 transition">
-                  <img 
-                    src={service.imageUrl} 
-                    alt={service.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  />
+                  <img src={service.imageUrl} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                  
+                  {service.badge && (
+                     <div className="absolute top-2 right-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">
+                       {service.badge}
+                     </div>
+                  )}
+
                   <div className="absolute bottom-0 left-0 p-4 w-full">
                     <h3 className="text-white font-bold text-base md:text-lg leading-tight mb-1">{service.title}</h3>
                     <p className="text-blue-400 font-semibold text-sm">{service.price}</p>
@@ -200,8 +270,64 @@ function App() {
             ))}
           </div>
         </div>
-
       </main>
+
+      {/* --- BOOKING MODAL --- */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-[#15171e] border border-gray-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
+            
+            <div className="p-6 border-b border-gray-800 flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-bold text-white">Book Service</h2>
+                <p className="text-sm text-blue-400 font-medium">{activeService.title} - {activeService.price}</p>
+              </div>
+              <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-white transition text-xl">✕</button>
+            </div>
+
+            <form onSubmit={handleBookingSubmit} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                <input 
+                  type="text" required value={bookingData.name} onChange={(e) => setBookingData({...bookingData, name: e.target.value})}
+                  className="w-full bg-[#0f1115] border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. John Doe"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-1">Phone Number</label>
+                <input 
+                  type="tel" required value={bookingData.phone} onChange={(e) => setBookingData({...bookingData, phone: e.target.value})}
+                  className="w-full bg-[#0f1115] border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-blue-500" placeholder="e.g. 0712345678"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-1">Date</label>
+                  <input 
+                    type="date" required value={bookingData.date} onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
+                    className="w-full bg-[#0f1115] border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-blue-500 [color-scheme:dark]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-1">Time</label>
+                  <input 
+                    type="time" required value={bookingData.time} onChange={(e) => setBookingData({...bookingData, time: e.target.value})}
+                    className="w-full bg-[#0f1115] border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:border-blue-500 [color-scheme:dark]"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md font-bold hover:bg-blue-500 transition shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                  Confirm Booking
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
